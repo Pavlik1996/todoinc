@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Pavlik1996/static/css/main.e6c13ad2.css",
+    "main.js": "/Pavlik1996/static/js/main.65bb13b8.js",
+    "static/js/496.0f224faf.chunk.js": "/Pavlik1996/static/js/496.0f224faf.chunk.js",
+    "index.html": "/Pavlik1996/index.html",
+    "main.e6c13ad2.css.map": "/Pavlik1996/static/css/main.e6c13ad2.css.map",
+    "main.65bb13b8.js.map": "/Pavlik1996/static/js/main.65bb13b8.js.map",
+    "496.0f224faf.chunk.js.map": "/Pavlik1996/static/js/496.0f224faf.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.65bb13b8.js"
+  ]
+}
