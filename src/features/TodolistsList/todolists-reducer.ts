@@ -56,8 +56,6 @@ export const fetchTodolistsTC = () => {
     }
 }
 
-
-
 export const removeTodolistTC = (todolistId: string) => {
     return (dispatch: Dispatch<ActionsType>) => {
         dispatch(setStatusAC('loading'))
@@ -68,12 +66,12 @@ export const removeTodolistTC = (todolistId: string) => {
                     dispatch(removeTodolistAC(todolistId))
                     dispatch(setStatusAC('succeeded'))
                 } else {
-                    handleServerAppError(res.data, dispatch)}
+                    handleServerAppError(res.data, dispatch)
+                }
             })
             .catch(err => {
                 handleServerNetworkError(dispatch, err)
                 dispatch(changeTodolistEntityStatusAC(todolistId, 'failed'))
-
             })
     }
 }
@@ -82,8 +80,15 @@ export const addTodolistTC = (title: string) => {
         dispatch(setStatusAC('loading'))
         todolistsAPI.createTodolist(title)
             .then((res) => {
-                dispatch(addTodolistAC(res.data.data.item))
-                dispatch(setStatusAC('succeeded'))
+                if (res.data.resultCode === ResultCods.OK) {
+                    dispatch(addTodolistAC(res.data.data.item))
+                    dispatch(setStatusAC('succeeded'))
+                } else {
+                    handleServerAppError(res.data, dispatch)
+                }
+            })
+            .catch(err => {
+                handleServerNetworkError(dispatch, err)
             })
     }
 }
@@ -92,9 +97,16 @@ export const changeTodolistTitleTC = (id: string, title: string) => {
         dispatch(setStatusAC('loading'))
         todolistsAPI.updateTodolist(id, title)
             .then((res) => {
-                dispatch(changeTodolistTitleAC(id, title))
-                dispatch(setStatusAC('succeeded'))
-
+                if (res.data.resultCode === ResultCods.OK) {
+                    dispatch(changeTodolistTitleAC(id, title))
+                    dispatch(setStatusAC('succeeded'))
+                } else {
+                    handleServerAppError(res.data, dispatch)
+                }
+            })
+            .catch(err => {
+                handleServerNetworkError(dispatch, err)
+                dispatch(changeTodolistEntityStatusAC(id, 'failed'))
             })
     }
 }
